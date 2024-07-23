@@ -21,10 +21,6 @@ function Header({name='게스트', age = -1}) {
         // 이것은 주석입니다.
         <BorderBox>
             <div style={HeaderStyle} className="AAA">
-
-                {
-                    console.log(age)
-                }
                 {
                     /*
                     이것은 여러 줄 주석입니다.

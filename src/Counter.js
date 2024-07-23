@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import BorderBox from "./BorderBox";
 
 function Counter() {
-    let numberState  = useState(0);
+    let numberState   = useState(0);
     let number = numberState[0];
     let setNumber = numberState[1];
     // let [number, setNumber] = useState(0)
