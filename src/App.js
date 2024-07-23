@@ -9,32 +9,38 @@ function App() {
             id: 1,
             title: '여러분',
             content: '지각하지 마세요',
-            nickname: '강사'
+            nickname: '강사',
+            active: true
 
         },
         {
             id: 2,
             title: '여러분',
             content: '지각하지 마세요',
-            nickname: '강사'
+            nickname: '강사',
+            active: false
+
         },
         {
             id: 3,
             title: '여러분',
             content: '장마가 싫다',
-            nickname: '강사'
+            nickname: '강사',
+            active: false
         },
         {
             id: 4,
             title: '여러분',
             content: '집에 가고 싶다.',
-            nickname: '강사'
+            nickname: '집으로 ',
+            active: false
         },
         {
             id: 5,
-            title: '여러분',
+            title: '여러분1',
             content: '지각하지 마세요',
-            nickname: '강사'
+            nickname: '강사',
+            active: false
         }
     ])
 
@@ -80,6 +86,18 @@ function App() {
         nextId.current += 1;
     }
 
+    let onDelete = (id) => {
+        setBoards(boards.filter(board => board.id !== id))
+    }
+
+    let onToggle= (id) => {
+        setBoards(
+            boards.map(b =>
+                b.id === id ? {...b, active: !b.active} : b
+            )
+        )
+    }
+
     return (
       <div className="App">
           <WriteBoard
@@ -89,9 +107,9 @@ function App() {
             onWrite = {onWrite}
             onChange = {onChange}
           />
-          <BoardList boards={boards}/>
+          <BoardList boards={boards} onDelete = {onDelete} onToggle = {onToggle}/>
       </div>
-  );
+    );
 }
 
 export default App;

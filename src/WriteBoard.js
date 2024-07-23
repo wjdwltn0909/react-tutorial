@@ -1,6 +1,7 @@
 import React from "react";
 import BorderBox from "./BorderBox";
 
+// 파라미터에 중괄호{ } 필요!!
 function WriteBoard({title, content, nickname, onWrite, onChange}) {
     return (
         <BorderBox>
