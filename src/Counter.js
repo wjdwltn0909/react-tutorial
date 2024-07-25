@@ -1,18 +1,16 @@
-import React, {useState} from "react";
+import React, {useReducer, useState} from "react";
 import BorderBox from "./BorderBox";
 
 function Counter() {
-    let numberState   = useState(0);
-    let number = numberState[0];
-    let setNumber = numberState[1];
-    // let [number, setNumber] = useState(0)
+    let [number, dispatch] = useReducer(reducer, 0)
 
     let onMinus = () => {
-        setNumber(prevNumber => prevNumber - 1)
-    }
-    let onPlus = () => {
-        setNumber(number + 1)
+        dispatch({type: 'MINUS'})
 
+    }
+
+    let onPlus = () => {
+        dispatch({type: 'PLUS'})
     }
 
     return (
@@ -24,6 +22,17 @@ function Counter() {
             </p>
         </BorderBox>
     );
+}
+
+function reducer(state, action) {
+    switch (action.type) {
+        case 'MINUS':
+            return state - 1;
+        case 'PLUS':
+            return state + 1;
+        default:
+            return state;
+    }
 }
 
 export default Counter;
