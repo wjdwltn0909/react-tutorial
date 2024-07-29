@@ -3,6 +3,13 @@ import BoardList from "./BoardList";
 import React, {useCallback, useMemo, useReducer, useRef, useState} from "react";
 import WriteBoard from "./WriteBoard";
 import Counter from "./Counter";
+import {Link, Route, Routes} from "react-router-dom";
+import Hello from "./Hello";
+import Hello2 from "./Hello2";
+import ShowGetParam from "./showGetParam";
+import BoardList2 from "./BoardList2";
+import Board2 from "./Board2";
+import NotFound from "./NotFound";
 
 
 function countRead(boards) {
@@ -133,15 +140,32 @@ function App() {
         <BoardDispatch.Provider value={dispatch}>
             <div className="App">
                 {/*state.inputs 생략가능!!!*/}
-                <WriteBoard
-                    title={title}
-                    content={content}
-                    nickname={nickname}
-                    onChange={onChange}
-                    onWrite={onWrite}
-                />
-                <h1>읽은 글의 갯수: {count}</h1>
-                <BoardList boardArray={boardArray}/>
+                {/*<WriteBoard*/}
+                {/*    title={title}*/}
+                {/*    content={content}*/}
+                {/*    nickname={nickname}*/}
+                {/*    onChange={onChange}*/}
+                {/*    onWrite={onWrite}*/}
+                {/*/>*/}
+                {/*<h1>읽은 글의 갯수: {count}</h1>*/}
+                {/*<BoardList boardArray={boardArray}/>*/}
+                <Routes>
+                    <Route path="/" element={<Hello/>}/>
+
+                    <Route path="/hello2/:name" element={<Hello2/>}/>
+                    <Route path="/get" element={<ShowGetParam/>}/>
+                    <Route path="/board" element={<BoardList2/>}>
+                        <Route path=":id" element={<Board2/>}/>
+                    </Route>
+                    <Route path="*" element={<NotFound/>}/>
+                </Routes>
+
+
+                <Link to={"/hello2/조재영"}>hello2로</Link> <br/>
+                <Link to={"/hello2/김철수"}>hello2로</Link> <br/>
+                <Link to={"/hello2/"}>Hello2로(잘못된 링크)</Link> <br/>
+                <Link to={"/board"}>게시판 목록으로</Link>
+
             </div>
         </BoardDispatch.Provider>
 
